@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie Browser</title>
+  <link rel="stylesheet" href="C:\Users\Lucky Kyn\Documents\java\src\css\style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Browser</h1>
+    <input type="text" id="searchInput" placeholder="Search movies..." oninput="searchMovies()">
+    <div id="movieList" class="movie-list"></div>
+  </div>
+  <script>const movies = [
+  { title: "Mario Bros", poster: "https://posterspy.com/wp-content/uploads/2023/03/Mario-movie-poster.jpg" },
+  { title: "Black Widow", poster: "https://www.vintagemovieposters.co.uk/wp-content/uploads/2022/09/IMG_8076-scaled.jpeg" },
+  { title: "Wish", poster: "https://www.youloveit.com/uploads/posts/2023-09/1695832211_youloveit_com_disney_wish_poster.jpg" },
+  { title: "Guardian Of The Galaxy", poster: "https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/11/IMG_5878-scaled.jpeg" }
+
+];
+
+function displayMovies(filteredMovies) {
+  const movieList = document.getElementById('movieList');
+  movieList.innerHTML = '';
+  filteredMovies.forEach(movie => {
+    const div = document.createElement('div');
+    div.className = 'movie-card';
+    div.innerHTML = `
+      <img src="${movie.poster}" alt="${movie.title}">
+      <p>${movie.title}</p>
+    `;
+    movieList.appendChild(div);
+  });
+}
+
+function searchMovies() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = movies.filter(movie => movie.title.toLowerCase().includes(query));
+  displayMovies(filtered);
+}
+
+// Initial render
+window.onload = () => displayMovies(movies);</script>
+
+</body>
+</html>
